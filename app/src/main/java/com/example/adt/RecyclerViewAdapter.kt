@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.recyclerview_row.view.*
 
 class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
@@ -39,13 +40,21 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolde
         val tvName = view.tvName
         val tvStatus = view.tvStatus
         val tvSpecies = view.tvSpecies
+        val imgCharacter = view.imgCharacter
 
-        //    val imgCharacter = view.imgCharacter
         fun bind(data: RecyclerData) {
             tvName.text = data.name
             tvStatus.text = data.status
             tvSpecies.text = data.species
-            //    tvStatus.text = data.status
+
+            val imgUrl = data.image
+            Glide.with(imgCharacter)
+                .load(imgUrl)
+                .circleCrop()
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_background)
+                .fallback(R.drawable.ic_launcher_background)
+                .into(imgCharacter)
         }
 
     }
