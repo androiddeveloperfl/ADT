@@ -27,10 +27,11 @@ class RecyclerViewActivity : AppCompatActivity() {
     }
 
     private fun createData() {
-        val item = ArrayList<String>()
-        item.add("temporary1")
-        item.add("temporary2")
-        item.add("temporary3")
+        val item = ArrayList<RecyclerData>()
+        item.add(RecyclerData("id1", "name1"))
+        item.add(RecyclerData("id2", "name2"))
+        item.add(RecyclerData("id3", "name3"))
+        item.add(RecyclerData("id4", "name4"))
 
         recyclerViewAdapter.setListData(item)
         recyclerViewAdapter.notifyDataSetChanged()
