@@ -3,20 +3,22 @@ package com.example.adt
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recyclerview_row.view.*
 
 class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
 
-    private var items = ArrayList<RecyclerData>()
+    var items = ArrayList<RecyclerData>()
 
-    fun setListData(data: ArrayList<RecyclerData>) {
-        this.items = data
+    fun setListData(data: List<RecyclerData>) {
+        this.items = data as ArrayList<RecyclerData>
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): MyViewHolder {
         val inflater =
             LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_row, parent, false)
 
@@ -33,13 +35,17 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolde
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
+        // TODO: include Name, Status, Species and an image of the character
+        val tvName = view.tvName
+        val tvStatus = view.tvStatus
+        val tvSpecies = view.tvSpecies
 
-        private val tvID: TextView = view.tvTitle
-        val tvName = view.tvDesc
-
+        //    val imgCharacter = view.imgCharacter
         fun bind(data: RecyclerData) {
-            tvID.text = data.id
             tvName.text = data.name
+            tvStatus.text = data.status
+            tvSpecies.text = data.species
+            //    tvStatus.text = data.status
         }
 
     }
