@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_recycler_view.*
 import retrofit2.Call
 import retrofit2.Response
 
-class RecyclerViewActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     lateinit var recyclerViewAdapter: RecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +26,7 @@ class RecyclerViewActivity : AppCompatActivity() {
     private fun initRecyclerView() {
 
         recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@RecyclerViewActivity)
+            layoutManager = LinearLayoutManager(this@MainActivity)
             recyclerViewAdapter = RecyclerViewAdapter()
             adapter = recyclerViewAdapter
 
@@ -36,18 +36,12 @@ class RecyclerViewActivity : AppCompatActivity() {
     }
 
 
-    fun createData() {
-//        val item = ArrayList<RecyclerData>()
-//        item.add(RecyclerData("temp1", "description"))
-//        item.add(RecyclerData("temp2", "description"))
-//        item.add(RecyclerData("temp3", "description"))
-//
-//        recyclerViewAdapter.setListData(item)
-//        recyclerViewAdapter.notifyDataSetChanged()
+    private fun createData() {
+
 
         val retroInstance =
             RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
-        val call = retroInstance.getDataFromAPI() // AMANI TODO
+        val call = retroInstance.getDataFromAPI()
         call.enqueue(object : retrofit2.Callback<RecyclerList> {
             override fun onResponse(call: Call<RecyclerList>, response: Response<RecyclerList>) {
                 if (response.isSuccessful) {
@@ -58,7 +52,7 @@ class RecyclerViewActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<RecyclerList>, t: Throwable) {
                 Toast.makeText(
-                    this@RecyclerViewActivity,
+                    this@MainActivity,
                     "Error getting data from api.",
                     Toast.LENGTH_LONG
                 ).show()

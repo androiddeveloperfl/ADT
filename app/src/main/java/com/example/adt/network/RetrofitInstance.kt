@@ -6,11 +6,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RetrofitInstance {
 
     companion object {
-        //     private const val baseURL = "https://rickandmortyapi.com"
+        private const val baseURL = "https://rickandmortyapi.com/api/"
         fun getRetrofitInstance(): Retrofit {
 
             return Retrofit.Builder()
-                .baseUrl("https://rickandmortyapi.com/api/")
+                .baseUrl(baseURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
