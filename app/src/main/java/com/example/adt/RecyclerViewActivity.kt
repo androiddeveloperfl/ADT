@@ -3,7 +3,9 @@ package com.example.adt
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
 import com.example.adt.network.RetrofitInstance
 import com.example.adt.network.RetrofitService
 import kotlinx.android.synthetic.main.activity_recycler_view.*
@@ -27,6 +29,9 @@ class RecyclerViewActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@RecyclerViewActivity)
             recyclerViewAdapter = RecyclerViewAdapter()
             adapter = recyclerViewAdapter
+
+            val decoration = DividerItemDecoration(applicationContext, VERTICAL)
+            addItemDecoration(decoration)
         }
     }
 
